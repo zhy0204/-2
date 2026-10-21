@@ -1,0 +1,275 @@
+          </div>
+
+          <div class="gauge-card">
+            <div class="gauge-title">施工後風險</div>
+            <svg class="gauge" viewBox="0 0 300 190">
+              <path d="M 35 150 A 115 115 0 0 1 265 150" fill="none" stroke="#294637" stroke-width="18" stroke-linecap="round"/>
+              <path d="M 35 150 A 115 115 0 0 1 92.5 50.4" fill="none" stroke="#35e08b" stroke-width="18"/>
+              <path d="M 92.5 50.4 A 115 115 0 0 1 207.5 50.4" fill="none" stroke="#ffd166" stroke-width="18"/>
+              <path d="M 207.5 50.4 A 115 115 0 0 1 265 150" fill="none" stroke="#ff5c70" stroke-width="18"/>
+              <text x="35" y="174" class="gauge-caption" text-anchor="middle">0</text>
+              <text x="150" y="26" class="gauge-caption" text-anchor="middle">50</text>
+              <text x="265" y="174" class="gauge-caption" text-anchor="middle">100</text>
+              <line class="needle" id="needleAfter" x1="150" y1="150" x2="150" y2="55"/>
+              <circle class="needle-hub" cx="150" cy="150" r="7"/>
+              <text x="150" y="132" class="gauge-score" id="scoreAfter" text-anchor="middle">0</text>
+              <text x="150" y="153" class="gauge-caption" id="levelAfter" text-anchor="middle">計算中</text>
+            </svg>
+          </div>
+        </div>
+        <div class="summary" id="riskSummaryText"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== 分頁二內容 ==================== -->
+<div id="page-finance" class="page">
+  <section class="panel">
+    <h2>工具二：保險與準備金配置試算表</h2>
+    <div class="subtitle" style="margin-bottom:16px">對應提案參數，支援小額、一般、壓力三種事故情境。</div>
+    <div class="input-grid">
+      <div class="input-box">
+        <label>快速選擇事故情境</label>
+        <select id="scenarioSelect" onchange="loadScenario()">
+          <option value="small">小額事故 (損害 L = 120,000)</option>
+          <option value="normal">一般事故 (損害 L = 800,000)</option>
+          <option value="pressure" selected>壓力事故 (損害 L = 2,200,000)</option>
+        </select>
+      </div>
+      <div class="input-box">
+        <label>承保損害金額 (L)</label>
+        <input id="lossInput" type="number" value="2200000" oninput="calculateFinance()">
+      </div>
+      <div class="input-box">
+        <label>每次事故自負額 (D)</label>
+        <input id="deductibleInput" type="number" value="200000" oninput="calculateFinance()">
+      </div>
+      <div class="input-box">
+        <label>每次事故理賠限額 (C)</label>
+        <input id="claimLimitInput" type="number" value="1500000" oninput="calculateFinance()">
+      </div>
+    </div>
+    <div class="input-grid" style="margin-top: 12px;">
+      <div class="input-box">
+        <label>當年剩餘累計限額 (A)</label>
+        <input id="annualLimitInput" type="number" value="3000000" oninput="calculateFinance()">
+      </div>
+      <div class="input-box">
+        <label>壓力情境自留目標 (T)</label>
+        <input id="targetFundInput" type="number" value="700000" oninput="calculateFinance()">
+      </div>
+      <div class="input-box">
+        <label>目前初始自留資金 (F)</label>
+        <input id="currentFundInput" type="number" value="500000" oninput="calculateFinance()">
+      </div>
+      <div class="input-box">
+        <label>除外損害金額 (X)</label>
+        <input id="excludeInput" type="number" value="0" oninput="calculateFinance()">
+      </div>
+    </div>
+    <div class="summary" style="margin-top: 20px;">
+      <h3 style="color: var(--cyan); margin-top: 0;">試算結果輸出</h3>
+      <p>🛡️ <strong>保險理賠金 (I)：</strong> <span id="resClaim" style="color: var(--green); font-size: 18px; font-weight: bold;">0</span> 元</p>
+      <p>🏢 <strong>企業自負負擔 (E)：</strong> <span id="resBurden" style="color: var(--red); font-size: 18px; font-weight: bold;">0</span> 元</p>
+      <p>⚠️ <strong>自留資金缺口 (G)：</strong> <span id="resGap" style="color: var(--yellow); font-size: 18px; font-weight: bold;">0</span> 元</p>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== 分頁三內容 ==================== -->
+<div id="page-dashboard" class="page">
+  <section class="panel">
+    <h2>工具三：生態監測儀表板與待辦事件</h2>
+    <table>
+      <tr><th>監測指標項目</th><th>當期數值 / 狀態</th><th>燈號判定</th></tr>
+      <tr><td><strong>棲地復育進度</strong></td><td>4,000 / 5,000 平方公尺 (80%)</td><td><span style="color: var(--green); font-weight: bold;">🟢 綠燈</span></td></tr>
+      <tr><td><strong>原生植物存活率</strong></td><td>420 / 500 株 (84%)</td><td><span style="color: var(--red); font-weight: bold;">🔴 紅燈</span></td></tr>
+      <tr><td><strong>監測完成率</strong></td><td>11 / 12 次 (91.7%)</td><td><span style="color: var(--yellow); font-weight: bold;">🟡 黃燈</span></td></tr>
+      <tr><td><strong>自留資金覆蓋率</strong></td><td>50 / 70 萬元 (71.4%)</td><td><span style="color: var(--red); font-weight: bold;">🔴 紅燈</span></td></tr>
+    </table>
+  </section>
+</div>
+
+</div>
+
+<script>
+function switchPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  document.getElementById('btn-' + pageId).classList.add('active');
+}
+
+const riskItems = [
+  { name: "棲地敏感性", weight: 30, before: 3, after: 2 },
+  { name: "植被移除比例", weight: 25, before: 3, after: 2 },
+  { name: "逕流影響", weight: 20, before: 3, after: 3 },
+  { name: "夜間施工頻率", weight: 15, before: 3, after: 2 },
+  { name: "監測與治理缺口", weight: 10, before: 2, after: 1 }
+];
+
+function initRiskTable() {
+  const tbody = document.getElementById('riskRows');
+  if(!tbody) return;
+  tbody.innerHTML = '';
+  riskItems.forEach((item, index) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${item.name}</td>
+      <td class="weight">${item.weight}%</td>
+      <td><select onchange="updateRisk(${index}, 'before', this.value)">
+          ${[1,2,3,4,5].map(v => `<option value="${v}" ${v===item.before?'selected':''}>${v}</option>`).join('')}
+      </select></td>
+      <td><select onchange="updateRisk(${index}, 'after', this.value)">
+          ${[1,2,3,4,5].map(v => `<option value="${v}" ${v===item.after?'selected':''}>${v}</option>`).join('')}
+      </select></td>
+      <td class="contribution" id="before-contrib-${index}">0</td>
+      <td class="contribution" id="after-contrib-${index}">0</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  calculateAll();
+}
+
+function updateRisk(index, type, val) {
+  riskItems[index][type] = parseInt(val);
+  calculateAll();
+}
+
+function calculateAll() {
+  const area = parseFloat(document.getElementById('areaInput').value) || 0;
+  const plants = parseFloat(document.getElementById('plantsInput').value) || 0;
+  const visits = parseFloat(document.getElementById('visitsInput').value) || 0;
+  const budget = parseFloat(document.getElementById('budgetInput').value) || 0;
+
+  const areaRatio = (area / 5000) * 100;
+  const plantsRatio = (plants / 500) * 100;
+  const visitsRatio = (visits / 12) * 100;
+  const fundRatio = (budget / 700000) * 100;
+
+  updateCard('area', areaRatio, area.toLocaleString() + ' / 5,000 m²', 80, 70);
+  updateCard('plants', plantsRatio, plants + ' / 500 株', 90, 85);
+  updateCard('visits', visitsRatio, visits + ' / 12 次', 100, 90);
+  updateCard('fund', fundRatio, 'NT$' + budget.toLocaleString() + ' / NT$700,000', 100, 80);
+
+  let totalBefore = 0;
+  let totalAfter = 0;
+
+  riskItems.forEach((item, index) => {
+    const cBefore = item.weight * ((item.before - 1) / 4);
+    const cAfter = item.weight * ((item.after - 1) / 4);
+    totalBefore += cBefore;
+    totalAfter += cAfter;
+
+    const bEl = document.getElementById(`before-contrib-${index}`);
+    const aEl = document.getElementById(`after-contrib-${index}`);
+    if(bEl) bEl.innerText = cBefore.toFixed(2);
+    if(aEl) aEl.innerText = cAfter.toFixed(2);
+  });
+
+  updateGauge('Before', totalBefore);
+  updateGauge('After', totalAfter);
+
+  const summaryEl = document.getElementById('riskSummaryText');
+  if(summaryEl) {
+    summaryEl.innerHTML = `
+      <strong>風險評估摘要：</strong><br>
+      施工前總風險分：<span class="level ${getRiskClass(totalBefore)}">${totalBefore.toFixed(2)} 分 (${getRiskLevel(totalBefore)})</span><br>
+      施工後總風險分：<span class="level ${getRiskClass(totalAfter)}">${totalAfter.toFixed(2)} 分 (${getRiskLevel(totalAfter)})</span>
+    `;
+  }
+}
+
+function updateCard(id, ratio, detailText, greenThresh, yellowThresh) {
+  const valEl = document.getElementById(id + 'Value');
+  const detEl = document.getElementById(id + 'Detail');
+  const barEl = document.getElementById(id + 'Bar');
+  
+  if(valEl) valEl.innerText = ratio.toFixed(1) + '%';
+  if(detEl) detEl.innerText = detailText;
+  if(barEl) barEl.style.width = Math.min(Math.max(ratio, 0), 100) + '%';
+
+  const lamp = document.getElementById('lamp' + id.charAt(0).toUpperCase() + id.slice(1));
+  if(lamp) {
+    lamp.className = 'lamp';
+    if (ratio >= greenThresh) lamp.classList.add('green');
+    else if (ratio >= yellowThresh) lamp.classList.add('yellow');
+    else lamp.classList.add('red');
+  }
+}
+
+function getRiskLevel(score) {
+  if (score < 30) return '低風險';
+  if (score < 60) return '中風險';
+  return '高風險';
+}
+
+function getRiskClass(score) {
+  if (score < 30) return 'low';
+  if (score < 60) return 'medium';
+  return 'high';
+}
+
+function updateGauge(type, score) {
+  // 正確抓取分數與等級 DOM 標籤
+  const scoreEl = document.getElementById('score' + type);
+  const levelEl = document.getElementById('level' + type);
+  
+  if (scoreEl) {
+    scoreEl.textContent = score.toFixed(1);
+  }
+  if (levelEl) {
+    levelEl.textContent = getRiskLevel(score);
+  }
+
+  // 旋轉指針位置
+  const angle = (score / 100) * 180 - 90;
+  const needle = document.getElementById('needle' + type);
+  if (needle) {
+    needle.style.transform = `rotate(${angle}deg)`;
+  }
+}
+
+function loadScenario() {
+  const sc = document.getElementById('scenarioSelect').value;
+  if (sc === 'small') document.getElementById('lossInput').value = 120000;
+  else if (sc === 'normal') document.getElementById('lossInput').value = 800000;
+  else if (sc === 'pressure') document.getElementById('lossInput').value = 2200000;
+  calculateFinance();
+}
+
+function calculateFinance() {
+  let L = parseFloat(document.getElementById('lossInput').value) || 0;
+  let D = parseFloat(document.getElementById('deductibleInput').value) || 0;
+  let C = parseFloat(document.getElementById('claimLimitInput').value) || 0;
+  let A = parseFloat(document.getElementById('annualLimitInput').value) || 0;
+  let T = parseFloat(document.getElementById('targetFundInput').value) || 0;
+  let F = parseFloat(document.getElementById('currentFundInput').value) || 0;
+  let X = parseFloat(document.getElementById('excludeInput').value) || 0;
+
+  let claim = Math.min(Math.max(L - D, 0), C, A);
+  let burden = L + X - claim;
+  let gap = Math.max(T - F, 0);
+
+  const rc = document.getElementById('resClaim');
+  const rb = document.getElementById('resBurden');
+  const rg = document.getElementById('resGap');
+  if(rc) rc.innerText = claim.toLocaleString();
+  if(rb) rb.innerText = burden.toLocaleString();
+  if(rg) rg.innerText = gap.toLocaleString();
+}
+
+window.onload = function() {
+  initRiskTable();
+  calculateFinance();
+};
+
+['areaInput', 'plantsInput', 'visitsInput', 'budgetInput'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', calculateAll);
+});
+</script>
+
+</body>
+</html>
